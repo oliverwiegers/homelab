@@ -5,12 +5,19 @@
   inputs,
   outputs,
   helpers,
+  self,
   ...
 }:
 with helpers;
-{
+let
+  username = "oliver.wiegers";
+in {
+  imports = [
+    inputs.sops-nix.homeManagerModules.sops
+  ];
+
   home = {
-    username = "oliver.wiegers";
+    inherit username;
     homeDirectory = "/Users/oliver.wiegers";
     stateVersion = "23.05";
 
@@ -45,6 +52,12 @@ with helpers;
       # Workaround for https://github.com/nix-community/home-manager/issues/2942
       allowUnfreePredicate = _: true;
     };
+  };
+
+  services.networking.syncthing.enable = true;
+  sops = {
+    gnupg.home = "/Users/${username}/.gnupg";
+    secrets.syncthing.sopsFile = "${self}/nix/secrets.yaml";
   };
 
   os = {

@@ -60,7 +60,7 @@ in
     sops = {
       secrets = {
         initialRootPassword = {
-          sopsFile = "${self}/secrets.yaml";
+          sopsFile = "${self}/nix/secrets.yaml";
           neededForUsers = true;
         };
       };

@@ -24,13 +24,14 @@ in
     programs = {
       ssh = {
         enable = true;
-        forwardAgent = true;
+        enableDefaultConfig = false;
 
         extraConfig = ''
+          ForwardAgent yes
+          AddKeysToAgent yes
           IgnoreUnknown UseKeychain
           UseKeychain yes
           IdentityFile ~/.ssh/id_ed25519
-          AddKeysToAgent yes
         '';
 
         matchBlocks =

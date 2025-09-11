@@ -25,6 +25,8 @@ let
     urlscan
     watch
     tree
+    android-tools
+    nh
   ];
 
   inputsOverlayPackages = with pkgs.inputs; [

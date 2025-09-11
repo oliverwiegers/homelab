@@ -18,3 +18,9 @@ provider "inwx" {
   username = data.sops_file.secrets.data["inwx.username"]
   password = data.sops_file.secrets.data["inwx.password"]
 }
+
+provider "openwrt" {
+  user = data.sops_file.secrets.data["openwrt.user"]
+  password = data.sops_file.secrets.data["openwrt.password"]
+  remote = "http://192.168.1.1"
+}

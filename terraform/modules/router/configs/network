@@ -1,0 +1,46 @@
+
+config interface 'loopback'
+	option ifname 'lo'
+	option proto 'static'
+	option ipaddr '127.0.0.1'
+	option netmask '255.0.0.0'
+
+config globals 'globals'
+	option ula_prefix 'fd32:a040:8f64::/48'
+
+config interface 'lan'
+	option type 'bridge'
+	option ifname 'eth0.1'
+	option proto 'static'
+	option ipaddr '192.168.1.1'
+	option netmask '255.255.255.0'
+	option ip6assign '60'
+
+config interface 'wan'
+	option ifname 'eth0.7'
+	option proto 'pppoe'
+	option password 'test'
+	option ipv6 'auto'
+	option username 'test'
+
+config interface 'wan6'
+	option proto 'dhcpv6'
+	option ifname 'eth1.7'
+
+config switch
+	option name 'switch0'
+	option reset '1'
+	option enable_vlan '1'
+
+config switch_vlan
+	option device 'switch0'
+	option vlan '1'
+	option ports '0 1 2 3 5t 6t'
+	option vid '1'
+
+config switch_vlan
+	option device 'switch0'
+	option vlan '2'
+	option ports '4t 5t 6t'
+	option vid '7'
+

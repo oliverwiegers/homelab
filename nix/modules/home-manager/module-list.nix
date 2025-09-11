@@ -25,4 +25,5 @@
   ./graphical/programs/zathura.nix
   ./graphical/programs/rofi
   ./graphical/services/mako.nix
+  ./services/networking/syncthing.nix
 ]

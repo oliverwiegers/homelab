@@ -37,6 +37,7 @@ appendpath () {
 
 # Set our default path (/usr/sbin:/sbin:/bin included for non-Void chroots)
 appendpath "$HOME/.local/bin"
+appendpath "$HOME/.local/ovftool"
 appendpath "$HOME/.krew/bin"
 appendpath "$HOME/.local/bin/scripts"
 appendpath "$HOME/go/bin"

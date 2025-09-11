@@ -107,3 +107,7 @@ module "bootstrap_nixos" {
   hostname    = each.value.hostname
   instance_id = each.value.instance_id
 }
+
+module "router" {
+  source = "${path.root}/modules/router"
+}

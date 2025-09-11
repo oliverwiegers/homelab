@@ -38,7 +38,7 @@ with lib // helpers;
   # Rosetta builder start.
   # NOTE: linux-builder needs to be enabled to build nix-rosetta-builder for the first time.
   nix.linux-builder = {
-    enable = false;
+    enable = true;
     ephemeral = true;
   };
   nix-rosetta-builder = {
@@ -109,7 +109,6 @@ with lib // helpers;
     ];
     casks = [
       "caffeine"
-      "docker"
       "appcleaner"
       #"microsoft-office"
       #"microsoft-teams"

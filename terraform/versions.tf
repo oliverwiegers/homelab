@@ -46,5 +46,10 @@ terraform {
       source  = "hashicorp/null"
       version = ">= 3.2.4"
     }
+
+    openwrt = {
+      source = "Foxboron/openwrt"
+      version = ">= 0.0.2"
+    }
   }
 }

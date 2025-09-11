@@ -150,7 +150,7 @@ in
 
     secrets = {
       desec = {
-        sopsFile = "${self}/secrets.yaml";
+        sopsFile = "${self}/nix/secrets.yaml";
         group = "keys";
         mode = "0440";
       };
