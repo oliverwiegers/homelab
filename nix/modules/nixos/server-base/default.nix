@@ -2,7 +2,7 @@
   lib,
   pkgs,
   config,
-  self,
+  flake,
   inputs,
   modulesPath,
   ...
@@ -15,8 +15,8 @@ in
     (modulesPath + "/profiles/headless.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
 
-    "${self}/nix/modules/nixos/profiles/acme-defaults.nix"
-    "${self}/nix/modules/nixos/profiles/sops-defaults.nix"
+    "${flake}/nix/profiles/acme-defaults.nix"
+    "${flake}/nix/profiles/sops-defaults.nix"
 
     inputs.sops-nix.nixosModules.sops
   ];
@@ -60,7 +60,7 @@ in
     sops = {
       secrets = {
         initialRootPassword = {
-          sopsFile = "${self}/nix/secrets.yaml";
+          sopsFile = "${flake}/nix/secrets.yaml";
           neededForUsers = true;
         };
       };

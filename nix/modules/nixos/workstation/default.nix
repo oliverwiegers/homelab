@@ -2,16 +2,22 @@
   pkgs,
   config,
   lib,
-  helpers,
+  flake,
   ...
 }:
 with lib;
 let
   cfg = config.workstation;
-  inherit (helpers) _metadata;
+  inherit (flake.lib) _metadata;
 in
 {
-  imports = helpers.getConfigFilePaths ./. ++ helpers.getDirectoryPaths ./.;
+  imports = [
+    ./wm.nix
+    ./wifi.nix
+    ./audio.nix
+    ./laptop.nix
+    ./virtualization.nix
+  ];
 
   options = {
     workstation = {
