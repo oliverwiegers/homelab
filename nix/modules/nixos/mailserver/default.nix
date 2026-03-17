@@ -3,7 +3,7 @@
   pkgs,
   config,
   inputs,
-  helpers,
+  flake,
   ...
 }:
 with lib;
@@ -205,7 +205,7 @@ in
             };
           in
           {
-            backups = builtins.mapAttrs (name: settings: helpers.mkBackup name settings) services;
+            backups = builtins.mapAttrs (name: settings: flake.lib.mkBackup name settings) services;
           };
       };
 

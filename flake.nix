@@ -80,6 +80,17 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    blueprint = {
+      url = "github:numtide/blueprint";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    devshell = {
+      url = "github:numtide/devshell";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+
     #   ________
     #  /_  __/ /_  ___  ____ ___  ___  _____
     #   / / / __ \/ _ \/ __ `__ \/ _ \/ ___/
