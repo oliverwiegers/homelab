@@ -10,6 +10,8 @@
     [
       inputs.nix-homebrew.darwinModules.nix-homebrew
       inputs.nix-rosetta-builder.darwinModules.default
+
+      "${flake}/nix/profiles/nix-settings.nix"
     ]
   ];
 
@@ -25,7 +27,13 @@
   #   / __ \/ / |/_/_____/ __  / __ `/ ___/ | /| / / / __ \
   #  / / / / />  </_____/ /_/ / /_/ / /   | |/ |/ / / / / /
   # /_/ /_/_/_/|_|      \__,_/\__,_/_/    |__/|__/_/_/ /_/
-  nixpkgs.hostPlatform = "aarch64-darwin";
+  users.users = {
+    "oliver.wiegers".home = "/Users/oliver.wiegers";
+  };
+
+  nixpkgs = {
+    hostPlatform = "aarch64-darwin";
+  };
 
   ids.gids.nixbld = 30000;
 

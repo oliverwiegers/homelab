@@ -73,3 +73,21 @@ hgh() {
         | cut -d ' ' -f 2 \
         | cut -d '-' -f 2
 }
+
+daily() {
+    _datestring="$(date +%d-%m-%Y)"
+    _monthstring="$(date +%m_%b)"
+    _daily_dir="$HOME/Documents/notes/nlx/daily"
+    _month_dir="${_daily_dir}/${_monthstring}"
+    _daily_file="${_month_dir}/${_datestring}.md"
+
+    if ! [ -d "${_month_dir}" ]; then
+        mkdir "${_month_dir}"
+    fi
+
+    if ! [ -f "${_daily_file}" ]; then
+        cp "${_daily_dir}/_template.md" "${_daily_file}"
+    fi
+
+    vim "${_daily_file}"
+}

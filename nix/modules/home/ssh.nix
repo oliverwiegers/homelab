@@ -38,6 +38,7 @@ in
           {
             "*" = {
               user = "root";
+              hashKnownHosts = false;
             };
           }
           // servers
