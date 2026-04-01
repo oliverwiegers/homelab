@@ -37,6 +37,14 @@ in
             trustExitCode = true;
             prompt = false;
           };
+          merge = {
+            branchDesc = true;
+          };
+          branch = {
+            main = {
+              mergeOptions = "--no-ff --log --edit";
+            };
+          };
         } // cfg.extraConfig;
       };
 

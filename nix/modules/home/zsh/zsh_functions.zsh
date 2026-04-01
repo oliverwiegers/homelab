@@ -66,6 +66,48 @@ gbda() {
     git remote prune "${remote}"
 }
 
+unalias gb
+gb() {
+    if ! [ "$#" -gt 0 ]; then
+        # Collect branches and descriptions
+        _branches="$(git branch | sed 's|[* ]||g' | while read -r _branch; do
+            _prefix="$(\
+                if [ "${_branch}" = "$(git rev-parse --abbrev-ref HEAD)" ]; then
+                    printf '\e[32m_*'
+                else
+                    printf '__'
+                fi\
+            )"
+            _description="$(git config "branch.${_branch}.description" \
+                | head -n1)"
+
+            printf '%s %s %s\n\e[0m' \
+                "${_prefix}" "${_branch}" "${_description}"
+        done)"
+
+        # Print out spaced like a table
+        _spacing="$(\
+            printf '%s' "${_branches}" \
+            | awk '{ if (length($2) > max) max = length($2) } END { print max }'\
+            )"
+
+        printf '%s' "$_branches" | while read -r _prefix _branch _desc; do
+            printf "%s %-${_spacing}s %s\n" \
+                "${_prefix//_/ }" "${_branch}" "${_desc}"
+        done
+    else
+        git branch $@
+    fi
+}
+
+unalias gcb
+gcb() {
+    git checkout -b "$1"
+
+    _branch="$(git rev-parse --abbrev-ref HEAD)"
+    git config "branch.${_branch}.description" "$2"
+}
+
 # Get revision hash for external resource in home manager.
 hgh() {
     home-manager switch --flake ".#${whoami}@$(hostname)" \
