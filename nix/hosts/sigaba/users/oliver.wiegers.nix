@@ -82,14 +82,12 @@ in {
       ssh = {
         enable = true;
 
-        extraMatchBlocks = {
+        extraSettings = {
           jumphost = {
-            user = "wiegers";
-            hostname = "aptdater03.infra.netlogix-ws.cust.nlxnet.de";
-            extraOptions = {
-              RequestTTY = "yes";
-              RemoteCommand = "tmux -L tmux new-session -As hacktheplanet";
-            };
+            User = "wiegers";
+            Hostname = "aptdater03.infra.netlogix-ws.cust.nlxnet.de";
+            RequestTTY = "yes";
+            RemoteCommand = "tmux -L tmux new-session -As hacktheplanet";
           };
         };
       };

@@ -14,7 +14,7 @@ in
 {
   options.terminal.programs.ssh = {
     enable = lib.mkEnableOption "Enable ssh.";
-    extraMatchBlocks = lib.mkOption {
+    extraSettings = lib.mkOption {
       type = lib.types.attrs;
       default = { };
     };
@@ -34,15 +34,15 @@ in
           IdentityFile ~/.ssh/id_ed25519
         '';
 
-        matchBlocks =
+        settings =
           {
             "*" = {
-              user = "root";
-              hashKnownHosts = false;
+              User = "root";
+              HashKnownHosts = false;
             };
           }
           // servers
-          // cfg.extraMatchBlocks;
+          // cfg.extraSettings;
       };
     };
   };

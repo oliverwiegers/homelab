@@ -55,16 +55,28 @@ in
             if config.hackstation.enable then defaultPlugins ++ hackstationPlugins else defaultPlugins;
 
           search = {
-            default = "ddg";
+            default = "DuckDuckGoNoAI";
             force = true;
 
             engines = {
               "bing".metaData.hidden = true;
               "Amazon.de".metaData.hidden = true;
+              "ddg".metaData.hidden = true;
 
               "google".metaData.alias = "@g";
-              "ddg".metaData.alias = "@d";
               "wikipedia".metaData.alias = "@w";
+
+              "DuckDuckGoNoAI" = {
+                definedAliases = [ "@d" ];
+                icon = "https://noai.duckduckgo.com/favicon.ico";
+                updateInterval = 24 * 60 * 60 * 1000; # every day
+
+                urls = [
+                  {
+                    template = "https://noai.duckduckgo.com/?q={searchTerms}";
+                  }
+                ];
+              };
 
               "Github" = {
                 definedAliases = [ "@gh" ];

@@ -9,7 +9,7 @@ with lib;
   config = {
     nixpkgs = {
       config = {
-        allowUnfree = true;
+        # allowUnfree = true;
       };
     };
 

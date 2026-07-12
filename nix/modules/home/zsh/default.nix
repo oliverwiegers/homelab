@@ -2,6 +2,7 @@
   lib,
   pkgs,
   config,
+  inputs,
   ...
 }:
 let
@@ -15,44 +16,24 @@ in
   config = lib.mkIf cfg.enable {
     home = {
       file = {
-        # TODO: Yeah software to never update again.
-        # This is ugly as hell. Need to fix this.
-        "fzf-tab" = {
+        zsh-fzf-tab = {
           target = ".zsh/oh-my-zsh/custom/plugins/fzf-tab";
-          source = pkgs.fetchFromGitHub {
-            leaveDotGit = true;
-            deepClone = true;
-            fetchSubmodules = true;
-            owner = "Aloxaf";
-            repo = "fzf-tab";
-            rev = "c2b4aa5ad2532cca91f23908ac7f00efb7ff09c9";
-            sha256 = "gvZp8P3quOtcy1Xtt1LAW1cfZ/zCtnAmnWqcwrKel6w=";
-          };
+          source = inputs.zsh-fzf-tab;
         };
 
-        "zsh-syntax-highlighting" = {
+        zsh-syntax-highlighting = {
           target = ".zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting";
-          source = pkgs.fetchFromGitHub {
-            leaveDotGit = true;
-            deepClone = true;
-            fetchSubmodules = true;
-            owner = "zsh-users";
-            repo = "zsh-syntax-highlighting";
-            rev = "143b25eb98aa3227af63bd7f04413e1b3e7888ec";
-            sha256 = "QuzjU9yuGEcPPRX2H3eatxP77cqPdD3GTNcp4TPfdJ8=";
-          };
+          source = inputs.zsh-syntax-highlighting;
         };
 
-        "powerlevel10k" = {
+        zsh-vi-mode = {
+          target = ".zsh/oh-my-zsh/custom/plugins/zsh-vi-mode";
+          source = inputs.zsh-vi-mode;
+        };
+
+        zsh-powerlevel10k = {
           target = ".zsh/oh-my-zsh/custom/themes/powerlevel10k";
-          source = pkgs.fetchFromGitHub {
-            leaveDotGit = true;
-            fetchSubmodules = true;
-            owner = "romkatv";
-            repo = "powerlevel10k";
-            rev = "174ce9bf0166c657404a21f4dc9608da935f7325";
-            sha256 = "AAKcgVcxTbx2YbJ8xgjT7532BLU2NRFIIsOd779OIGI=";
-          };
+          source = inputs.zsh-powerlevel10k;
         };
 
         ".p10k.zsh" = {
@@ -94,6 +75,7 @@ in
 
           # git
           gct = "git fetch --all; git checkout --track";
+          tmux = "tmux a || tmux";
         };
 
         oh-my-zsh = {
@@ -117,6 +99,7 @@ in
             "systemadmin"
             "taskwarrior"
             "zsh-syntax-highlighting"
+            "zsh-vi-mode"
           ];
         };
       };

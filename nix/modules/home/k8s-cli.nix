@@ -36,7 +36,7 @@ in
       # Completions might not work yet.
       kubecolor
       k9s
-      kdash
+      # kdash # removed from nixpkgs because broken.
       s3cmd
 
       # OS specific tools

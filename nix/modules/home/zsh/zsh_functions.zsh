@@ -115,21 +115,52 @@ hgh() {
         | cut -d ' ' -f 2 \
         | cut -d '-' -f 2
 }
+#!/usr/bin/env bash
 
-daily() {
+daily () {
     _datestring="$(date +%d-%m-%Y)"
     _monthstring="$(date +%m_%b)"
     _daily_dir="$HOME/Documents/notes/nlx/daily"
     _month_dir="${_daily_dir}/${_monthstring}"
     _daily_file="${_month_dir}/${_datestring}.md"
+    _last_daily=""
+    if [ -d "${_month_dir}" ]; then
+        _last_daily="$(find "${_month_dir}" -type f -name '*.md' \
+            | sort \
+            | tail -n1)"
+    else
+        _last_month="$(find "${_daily_dir}" -type d | sort | tail -n1)"
+
+        _last_daily="$(find "${_last_month}" -type f -name '*.md' \
+            | sort \
+            | tail -n1)"
+    fi
 
     if ! [ -d "${_month_dir}" ]; then
-        mkdir "${_month_dir}"
+        mkdir -pv "${_month_dir}" > /dev/null 2>&1
     fi
 
     if ! [ -f "${_daily_file}" ]; then
+        _joke="$(curl https://icanhazdadjoke.com/ -s | xargs | tr -d $'\r')"
+        _todos="$(sed -e '1,/## ToDo/ d'  "${_last_daily}" \
+            | sed 's/## ToDo//g;/^[[:space:]]*$/d')"
+
         cp "${_daily_dir}/_template.md" "${_daily_file}"
+
+        printf '%b' "${_todos}" >> "${_daily_file}"
+
+        sed -i -e "s/JOKE/${_joke}/g" "${_daily_file}"
     fi
 
     vim "${_daily_file}"
+}
+
+clear_dns_cache() {
+    if [ "$(uname -s)" = "Darwin" ]; then
+        sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder
+    elif command -v resolvectl 2> /dev/null 2>&1; then
+        sudo resolvectl flush-caches
+    else
+        printf 'Not implemented for this OS.\n'
+    fi
 }

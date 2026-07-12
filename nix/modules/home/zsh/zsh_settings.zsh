@@ -7,7 +7,6 @@
 #                                                                             #
 ###############################################################################
 
-enable-fzf-tab
 # Enable terragrunt autocompletion
 if command -v terragrunt > /dev/null 2>&1; then
     complete -o nospace -C "$(which terragrunt)" terragrunt
@@ -52,27 +51,6 @@ export BROWSER="firefox"
 # Fix java GUI issues with wayland
 _JAVA_AWT_WM_NONEREPARENTING=1
 
-#                  __
-#  _      ______ _/ /
-# | | /| / / __ `/ /
-# | |/ |/ / /_/ / /
-# |__/|__/\__,_/_/
-
-#if [ "$(uname)" = "Linux" ] && [ "$(command -v wal)" ]; then
-#    # Set wal theme if not done yet.
-#    if ! [ -d "$HOME/.cache/wal" ]; then
-#        wal --theme base16-gruvbox-hard
-#    fi
-#
-#    # &   # Run the process in the background.
-#    # ( ) # Hide shell job control messages.
-#    (cat ~/.cache/wal/sequences &)
-#
-#    # To add support for TTYs this line can be optionally added.
-#    # shellcheck source=/home/oliverwiegers/.cache/wal/colors-tty.sh
-#    . "${HOME}/.cache/wal/colors-tty.sh"
-#fi
-
 #         _                  __
 #  _   __(_)______  ______ _/ /____
 # | | / / / ___/ / / / __ `/ / ___/
@@ -87,8 +65,17 @@ _JAVA_AWT_WM_NONEREPARENTING=1
 # /_/|_|\___/\__, /_.___/_/_/ /_/\__,_/_/_/ /_/\__, /____/
 #           /____/                            /____/
 
-# Bind key for autosuggestions
-bindkey '^ ' autosuggest-accept
+function after_init() {
+    # Bind key for autosuggestions
+    zvm_bindkey viins '^@' autosuggest-accept
 
-bindkey '^B' backward-word
-bindkey '^F' forward-word
+    # Source fzf keybindings when using nix to install software.
+    source "$(\
+        ls -1 $HOME/.nix-profile/bin/fzf \
+        | awk 'sub(/(\/bin\/fzf)/,"", $3) {print $3}'\
+        )/share/fzf/key-bindings.zsh"
+
+    enable-fzf-tab
+}
+
+zvm_after_init_commands+=(after_init)

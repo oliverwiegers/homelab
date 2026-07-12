@@ -128,11 +128,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    simple-nixos-mailserver = {
-      url = "gitlab:simple-nixos-mailserver/nixos-mailserver/master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     impermanence = {
       url = "github:nix-community/impermanence";
     };
@@ -182,6 +177,33 @@
     nix-rosetta-builder = {
       url = "github:cpick/nix-rosetta-builder";
       inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    #  _____  _____ __  __   ____  __            _
+    # /__  / / ___// / / /  / __ \/ /_  ______ _(_)___  _____
+    #   / /  \__ \/ /_/ /  / /_/ / / / / / __ `/ / __ \/ ___/
+    #  / /_____/ / __  /  / ____/ / /_/ / /_/ / / / / (__  )
+    # /____/____/_/ /_/  /_/   /_/\__,_/\__, /_/_/ /_/____/
+    #                                  /____/
+
+    zsh-vi-mode = {
+      url = "github:jeffreytse/zsh-vi-mode";
+      flake = false;
+    };
+
+    zsh-fzf-tab = {
+      url = "github:Aloxaf/fzf-tab";
+      flake = false;
+    };
+
+    zsh-syntax-highlighting = {
+      url = "github:zsh-users/zsh-syntax-highlighting";
+      flake = false;
+    };
+
+    zsh-powerlevel10k = {
+      url = "github:romkatv/powerlevel10k";
+      flake = false;
     };
   };
 

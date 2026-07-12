@@ -68,16 +68,14 @@ in
 
       ssh = {
         enable = true;
-        extraMatchBlocks = {
+        extraSettings = {
           kali = {
-            user = "root";
-            hostname = "10.5.0.5";
-            extraOptions = {
-              StrictHostKeyChecking = "no";
-              RequestTTY = "yes";
-              RemoteCommand = "tmux -L tmux new-session -As hacktheplanet";
-              UserKnownHostsFile = "/dev/null";
-            };
+            User = "root";
+            Hostname = "10.5.0.5";
+            StrictHostKeyChecking = "no";
+            RequestTTY = "yes";
+            RemoteCommand = "tmux -L tmux new-session -As hacktheplanet";
+            UserKnownHostsFile = "/dev/null";
           };
 
           hackthebox = {
