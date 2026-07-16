@@ -115,7 +115,6 @@ hgh() {
         | cut -d ' ' -f 2 \
         | cut -d '-' -f 2
 }
-#!/usr/bin/env bash
 
 daily () {
     _datestring="$(date +%d-%m-%Y)"
@@ -153,6 +152,13 @@ daily () {
     fi
 
     vim "${_daily_file}"
+}
+
+notes() {
+    current_dir="$PWD"
+    cd "$HOME/Documents/notes" || exit 1
+    vim
+    cd "${current_dir}"
 }
 
 clear_dns_cache() {

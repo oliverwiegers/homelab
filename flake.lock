@@ -1089,11 +1089,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1750412806,
-        "narHash": "sha256-wMgYFXIkwB/TnEV3ve5IoURzuE3y4yx45T24eLftfpQ=",
+        "lastModified": 1784017050,
+        "narHash": "sha256-uxG2ASpbgdyss21Ss/lbnOuYBYM2Gs/npi1llTNDHnc=",
         "owner": "oliverwiegers",
         "repo": "tmuxist",
-        "rev": "3019949d6e7464359d8a03f9938c71275688a96b",
+        "rev": "e0e5d191ed55b9ae9175e3500f95462e1678aab6",
         "type": "github"
       },
       "original": {

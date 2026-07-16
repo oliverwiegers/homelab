@@ -40,6 +40,7 @@ appendpath "$HOME/.local/ovftool"
 appendpath "$HOME/.krew/bin"
 appendpath "$HOME/.local/bin/scripts"
 appendpath "$HOME/go/bin"
+appendpath "$HOME/Applications/Home Manager Apps/Firefox.app/Contents/MacOS/"
 
 unset appendpath
 # END Set PATH

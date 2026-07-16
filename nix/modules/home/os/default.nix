@@ -28,6 +28,7 @@ let
     tree
     android-tools
     nh
+    git-open
   ];
 
   inputsPackages = [
