@@ -18,7 +18,6 @@ in
       gh = {
         enable = true;
         extensions = with pkgs; [
-          gh-actions-cache
           gh-eco
           gh-markdown-preview
           gh-dash

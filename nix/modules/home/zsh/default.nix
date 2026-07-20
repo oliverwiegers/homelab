@@ -57,10 +57,10 @@ in
         ];
 
         shellAliases = {
-          ls = "exa --icons";
-          l = "exa -lah --icons";
-          ll = "exa -lh --icons";
-          lt = "exa -T --icons";
+          ls = "exa --icons auto";
+          l = "exa -lah --icons auto";
+          ll = "exa -lh --icons auto";
+          lt = "exa -T --icons auto";
           cat = "bat -pp";
           serv = "python3 -m http.server";
           wanip = "curl -s4 https://ip.syseleven.de";
