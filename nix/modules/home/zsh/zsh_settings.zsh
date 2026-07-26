@@ -80,3 +80,11 @@ function after_init() {
 }
 
 zvm_after_init_commands+=(after_init)
+
+function print-time() {
+    printf '\e[33m%s\e[0m\n' "$(date '+%d-%m-%Y %H:%M:%S')"
+}
+autoload -Uz add-zsh-hook
+add-zsh-hook preexec print-time 2>/dev/null || {
+    print -r -- >&2 'print-time failed loading add-zsh-hook.'
+}
