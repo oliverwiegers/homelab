@@ -90,6 +90,14 @@ gb() {
             printf '%s' "${_branches}" \
             | awk '{ if (length($2) > max) max = length($2) } END { print max }'\
             )"
+        _longest_desc="$(\
+            printf '%s' "${_branches}" | awk '{$1=$2=""; print $0}' \
+            | awk '{ if (length($0) > max) max = length($0) } END { print max }'\
+            )"
+
+        printf "   %-${_spacing}s %s\n" 'Branch' 'Description'
+        printf -- '-%0.s' {1..$((2+_spacing+_longest_desc))}
+        printf '\n'
 
         printf '%s' "$_branches" | while read -r _prefix _branch _desc; do
             printf "%s %-${_spacing}s %s\n" \
@@ -102,10 +110,9 @@ gb() {
 
 unalias gcb
 gcb() {
-    git checkout -b "$1"
+    git checkout -b "$1" || true
 
-    _branch="$(git rev-parse --abbrev-ref HEAD)"
-    git config "branch.${_branch}.description" "$2"
+    git config "branch.${$1}.description" "$2"
 }
 
 # Get revision hash for external resource in home manager.
