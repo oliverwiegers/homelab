@@ -112,7 +112,7 @@ unalias gcb
 gcb() {
     git checkout -b "$1" || true
 
-    git config "branch.${$1}.description" "$2"
+    git config "branch.${1}.description" "${2}"
 }
 
 # Get revision hash for external resource in home manager.
